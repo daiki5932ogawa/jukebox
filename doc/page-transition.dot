@@ -1,0 +1,16 @@
+# -*- compile-command: "dot -Tpdf page-transition.dot > page-transition.pdf" -*-
+
+digraph sample {
+  graph [rankdir=LR];
+  node [shape=box, margin=0.3];
+
+  entry_point [shape=point];
+  entry_point -> 動画再生画面;
+
+  動画再生画面 -> ログイン画面 [label="リンク"];
+  ログイン画面 -> ユーザ登録画面 [label="リンク"];
+  ログイン画面 -> パスワードリセット画面 [label="リンク"];
+  ログイン画面 -> 動画キュー表示画面 [label="ログイン（フォーム）"];
+  動画キュー表示画面 -> 動画キュー表示画面 [label="動画追加・削除（フォーム）"];
+  動画キュー表示画面 -> 動画再生画面 [label="リンク"];
+}
