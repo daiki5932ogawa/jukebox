@@ -4,3 +4,10 @@ app:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+video:
+    path:      /video
+    defaults:  { _controller: JukeboxBundle:Video:index }
+
+
+
