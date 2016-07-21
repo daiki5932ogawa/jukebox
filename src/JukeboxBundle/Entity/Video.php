@@ -4,6 +4,7 @@ namespace JukeboxBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Video
  *
@@ -51,6 +52,20 @@ class Video
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set id
+     *
+     * @param int $id
+     *
+     * @return Video
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     /**
@@ -124,5 +139,11 @@ class Video
     {
         return $this->lastDatePlayed;
     }
-}
 
+    public $urlFromForm;
+
+    public function getUrlFromForm()
+    {
+        return $this->urlFromForm;
+    }
+}

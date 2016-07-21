@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <ul id="navigation">
+            <?php foreach ($navigation as $item): ?>
+                <a href="">
+                    <a>ビデオをアップロード</a>
+                </a>
+            <?php endforeach; ?>
+        </ul>
+        //フォームを作成
+        <form action="{{ path('video/new') }}" method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+
+            <input type="submit" />
+        </form>
+        <a href="{{ path('video') }}">
+            戻る
+        </a>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

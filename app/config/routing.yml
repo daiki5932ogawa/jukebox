@@ -9,5 +9,7 @@ video:
     path:      /video
     defaults:  { _controller: JukeboxBundle:Video:index }
 
-
+video/new:
+    path:      /video/new
+    defaults:  { _controller: JukeboxBundle:Video:new }
 

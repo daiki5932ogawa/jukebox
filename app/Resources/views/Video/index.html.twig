@@ -7,6 +7,18 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        <ul id="navigation">
+            <a href="">
+                <a>アップロード済みビデオ一覧</a>
+            </a>
+        </ul>
+        <li>
+            {#ビデオ一覧のループを書く#}
+            {#<?php ?>#}
+        </li>
+        <a href="{{ path('video/new') }}">
+            新しく動画をアップロード
+        </a>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
