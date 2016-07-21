@@ -69,9 +69,10 @@ class VideoController extends Controller
     }
 
     //video取得
-    public function showVideo(){
+    public function showVideo($id){
         $entityManager = $this->getDoctrine()->getManager();
         $video = $entityManager->getRepository('JukeboxBundle:Video')->find($id);
+        return $video;
     }
 }
 

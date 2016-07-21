@@ -8,21 +8,15 @@
     </head>
     <body>
         <ul id="navigation">
-            <?php foreach ($navigation as $item): ?>
-                <a href="">
-                    <a>ビデオをアップロード</a>
-                </a>
-            <?php endforeach; ?>
+            <a>ビデオをアップロード</a>
         </ul>
-        //フォームを作成
+        {#フォームを作成#}
         <form action="{{ path('video/new') }}" method="post" {{ form_enctype(form) }}>
             {{ form_widget(form) }}
 
             <input type="submit" />
         </form>
-        <a href="{{ path('video') }}">
-            戻る
-        </a>
+        <a href="{{ path('video') }}">戻る</a>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
