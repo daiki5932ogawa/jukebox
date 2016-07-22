@@ -9,15 +9,15 @@
     <body>
         <ul id="navigation">
             <a href="">
-                <a>アップロード済みビデオ一覧</a>
+                <a>登録済みビデオ一覧</a>
             </a>
         </ul>
-        <li>
-            {#ビデオ一覧のループを書く#}
-            {#<?php ?>#}
-        </li>
+        {#ビデオ一覧のループを書く#}
+        {% for single_video in video_array %}
+            <li><a href=""> {{ single_video.getUrl }}</a></li>
+        {% endfor %}
         <a href="{{ path('video/new') }}">
-            新しく動画をアップロード
+            新しく動画を登録
         </a>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}

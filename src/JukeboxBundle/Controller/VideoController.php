@@ -18,8 +18,17 @@ class VideoController extends Controller
      */
     public function indexAction()
     {
+//        $entityManager = $this->getDoctrine()->getManager();
+//        $video = $entityManager->getRepository('JukeboxBundle:Video')->findLatest();
+
+        $video = $this->getDoctrine()
+            ->getRepository('JukeboxBundle:Video')
+            ->findAll();
+
         return $this->render(
-            'Video/index.html.twig'
+            'Video/index.html.twig', array(
+                'video_array' => $video
+             )
         );
     }
 
@@ -69,10 +78,11 @@ class VideoController extends Controller
     }
 
     //video取得
-    public function showVideo($id){
+    public function getVideo($id){
         $entityManager = $this->getDoctrine()->getManager();
         $video = $entityManager->getRepository('JukeboxBundle:Video')->find($id);
-        return $video;
+        return $this->render('JukeboxBundle:Video:index.html.twig', $video);
     }
+
 }
 

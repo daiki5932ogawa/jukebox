@@ -8,12 +8,11 @@
     </head>
     <body>
         <ul id="navigation">
-            <a>ビデオをアップロード</a>
+            <a>ビデオを登録</a>
         </ul>
         {#フォームを作成#}
         <form action="{{ path('video/new') }}" method="post" {{ form_enctype(form) }}>
             {{ form_widget(form) }}
-
             <input type="submit" />
         </form>
         <a href="{{ path('video') }}">戻る</a>
