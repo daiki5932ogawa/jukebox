@@ -37,20 +37,31 @@ class VideoController extends Controller
         //フォームの作成
         $video = new Video();
 
+        $allVideo = $this->getDoctrine()
+            ->getRepository('JukeboxBundle:Video')
+            ->findAll();
+        $videoCounter = count($allVideo);
+
         $form = $this->createFormBuilder($video)
             ->add('url', 'text')
             ->getForm();
 
+        //動画を登録する処理
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
 
             if ($form->isValid()) {
                 // ユーザーのIDを取得してownerにset
-                $video->setId(2);
-                //最後のVideoのIdを取得してidにset
                 $video->setOwner('1');
+                //最後のVideoのIdを取得してidにset
+                $video->setId(count($allVideo) + 1);
                 //Videoをデータベースに保存
-                $form->handleRequest($video);
+                //$form->handleRequest($video);
+
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($video);
+                $em->flush();
+
                 //video画面にリダイレクト
                 return $this->redirect($this->generateUrl('video'));
             }
@@ -59,22 +70,6 @@ class VideoController extends Controller
         return $this->render('Video/new.html.twig', array(
             'form' => $form->createView(),
         ));
-    }
-
-    //videoの新規登録
-    public function registerMovie()
-    {
-        $video = new Video();
-        $video->setId(2);
-        $video->setUrl('http://sjfnasjfna');
-        $video->setOwner('1');
-
-        $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($video);
-        $em->flush();
-
-        return new Response('Created product id '.$video->getId());
-
     }
 
     //video取得
