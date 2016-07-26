@@ -12,7 +12,7 @@
         </ul>
         {#ビデオ一覧のループを書く#}
         {% for single_video in video_array %}
-            <li><a href=""> {{ single_video.getUrl }}</a></li>
+            <li><a href="{{ path('video/detail', {'video_id': single_video.getId}) }}"> {{ single_video.getUrl }}</a></li>
         {% endfor %}
         <a href="{{ path('video/new') }}">
             新しく動画を登録

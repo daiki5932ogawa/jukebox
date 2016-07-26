@@ -72,6 +72,14 @@ class VideoController extends Controller
         ));
     }
 
+    public function detailAction($video_id){
+
+        $url = $this->generateUrl(
+            'Video/detail',
+            array('video_id' => 'video_id')
+        );
+    }
+
     //video取得
     public function getVideo($id){
         $entityManager = $this->getDoctrine()->getManager();

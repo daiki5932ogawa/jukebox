@@ -11,7 +11,7 @@
             ビデオを登録
         </ul>
         {#フォームを作成#}
-        <form action="{{ path('video/new') }}" method="post" {{ form_enctype(form) }}>
+        <form action="{{ path('video/new')}}" method="post" {{ form_enctype(form) }}>
             {{ form_widget(form) }}
             <input type="submit" />
         </form>
