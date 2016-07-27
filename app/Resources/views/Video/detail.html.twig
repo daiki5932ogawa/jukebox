@@ -13,7 +13,9 @@
 {#ビデオを表示 youtube埋め込み#}
 <iframe width="560" height="315" src="{{ video.getUrl }}" frameborder="0" allowfullscreen></iframe>
 {#ビデオを削除するボタンを設置#}
-
+<br>
+<a href="{{ path('video/delete', { 'video_id':video.getId }) }}">この動画を削除</a>
+<br>
 <a href="{{ path('video') }}">戻る</a>
 {% block javascripts %}{% endblock %}
 </body>

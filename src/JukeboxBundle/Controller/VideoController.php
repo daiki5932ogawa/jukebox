@@ -92,5 +92,13 @@ class VideoController extends Controller
         return $this->render('JukeboxBundle:Video:index.html.twig', $video);
     }
 
+    public function deleteAction($video_id){
+        $entityManager = $this->getDoctrine()->getManager();
+        $video = $entityManager->getRepository('JukeboxBundle:Video')->find($video_id);
+        $entityManager->remove($video);
+        $entityManager->flush();
+        return $this->redirect($this->generateUrl('video'));
+    }
+
 }
 
