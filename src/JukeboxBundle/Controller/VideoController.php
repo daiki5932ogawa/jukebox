@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JukeboxBundle\Entity\Video;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class VideoController extends Controller
 {
@@ -32,6 +33,10 @@ class VideoController extends Controller
         );
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
     public function newAction(Request $request)
     {
         //フォームの作成
@@ -55,6 +60,11 @@ class VideoController extends Controller
                 $video->setOwner('1');
                 //最後のVideoのIdを取得してidにset
                 $video->setId(count($allVideo) + 1);
+                //登録時の日時をlast_time_playedに登録
+//                $now = new DateTime();
+//                $date = date('Y-m-d H:i:s');
+//                echo $date;
+                $video->setLastDatePlayed(new \DateTime('now'));
                 //Videoをデータベースに保存
                 //$form->handleRequest($video);
 
@@ -72,6 +82,11 @@ class VideoController extends Controller
         ));
     }
 
+    /**
+     * @param Request $request
+     * @param $video_id
+     * @return Response
+     */
     public function detailAction(Request $request, $video_id){
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -92,12 +107,33 @@ class VideoController extends Controller
         return $this->render('JukeboxBundle:Video:index.html.twig', $video);
     }
 
+
+    /**
+     * @param $video_id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function deleteAction($video_id){
         $entityManager = $this->getDoctrine()->getManager();
         $video = $entityManager->getRepository('JukeboxBundle:Video')->find($video_id);
         $entityManager->remove($video);
         $entityManager->flush();
         return $this->redirect($this->generateUrl('video'));
+    }
+
+    public function playAction()
+    {
+//        $entityManager = $this->getDoctrine()->getManager();
+//        $video = $entityManager->getRepository('JukeboxBundle:Video')->findLatest();
+
+        $video = $this->getDoctrine()
+            ->getRepository('JukeboxBundle:Video')
+            ->findAll();
+
+        return $this->render(
+            'Video/play.html.twig', array(
+                'video_array' => $video
+            )
+        );
     }
 
 }

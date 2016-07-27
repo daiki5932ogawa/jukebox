@@ -20,3 +20,7 @@ video/detail:
 video/delete:
     path:       /video/{video_id}/delete
     defaults:   { _controller: JukeboxBundle:Video:delete }
+
+play:
+    path:       /play
+    defaults:   { _controller: JukeboxBundle:Video:play }

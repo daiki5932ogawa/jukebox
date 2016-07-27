@@ -8,19 +8,17 @@
     </head>
     <body>
         <ul id="navigation">
-            登録済みビデオ一覧
+            動画再生画面
         </ul>
         {#ビデオ一覧のループを書く#}
         {% for single_video in video_array %}
             <li><a href="{{ path('video/detail', {'video_id': single_video.getId}) }}"> {{ single_video.getUrl }}</a></li>
         {% endfor %}
-        <a href="{{ path('video/new') }}">
-            新しく動画を登録
-        </a>
+        {#ビデオ一覧から一個だけ取り出す#}
         <br>
         <br>
-        <a href="{{ path('play') }}">
-            動画再生画面へ
+        <a href="{{ path('video') }}">
+            登録動画一覧画面へ
         </a>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
