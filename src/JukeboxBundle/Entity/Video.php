@@ -150,4 +150,5 @@ class Video
     public function createUrlForDetail(){
         $urlForDetail = "video/detail"."";
     }
+
 }

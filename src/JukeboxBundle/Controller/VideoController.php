@@ -72,11 +72,16 @@ class VideoController extends Controller
         ));
     }
 
-    public function detailAction($video_id){
+    public function detailAction(Request $request, $video_id){
 
-        $url = $this->generateUrl(
-            'Video/detail',
-            array('video_id' => 'video_id')
+        $entityManager = $this->getDoctrine()->getManager();
+        $video = $entityManager->getRepository('JukeboxBundle:Video')->find($video_id);
+
+        return $this->render('Video/detail.html.twig'
+            , array(
+                //'video_id' => $video_id,
+                'video' => $video
+            )
         );
     }
 

@@ -14,5 +14,5 @@ video/new:
     defaults:  { _controller: JukeboxBundle:Video:new }
 
 video/detail:
-    path:       /video/detail/{video_id}
+    path:       /video/{video_id}
     defaults:  { _controller: JukeboxBundle:Video:detail }
