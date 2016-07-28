@@ -55,9 +55,11 @@ class VideoController extends Controller
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
 
+            $user_id = $this->getUser()->getId();
+
             if ($form->isValid()) {
                 // ユーザーのIDを取得してownerにset
-                $video->setOwner('1');
+                $video->setOwner($user_id);
                 //最後のVideoのIdを取得してidにset
                 $video->setId(count($allVideo) + 1);
                 //登録時の日時をlast_time_playedに登録
