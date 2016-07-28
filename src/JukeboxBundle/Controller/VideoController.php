@@ -24,7 +24,7 @@ class VideoController extends Controller
 
         $video = $this->getDoctrine()
             ->getRepository('JukeboxBundle:Video')
-            ->findAll();
+            ->findBy([],['lastDatePlayed' => 'ASC']);
 
         return $this->render(
             'Video/index.html.twig', array(
