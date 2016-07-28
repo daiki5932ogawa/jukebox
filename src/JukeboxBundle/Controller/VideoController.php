@@ -142,5 +142,9 @@ class VideoController extends Controller
     {
         return $this->getDoctrine()->getRepository('JukeboxBundle:Video')->findBy([], ['last_date_played' => 'ASC']);
     }
+
+    public function editAction($video_id){
+        //editする内容を書く
+    }
 }
 

@@ -16,6 +16,8 @@
 <br>
 <a href="{{ path('video/delete', { 'video_id':video.getId }) }}">この動画を削除</a>
 <br>
+<a href="{{ path('video/edit', { 'video_id':video.getId }) }}">この動画を編集</a>
+<br>
 <a href="{{ path('video') }}">戻る</a>
 {% block javascripts %}{% endblock %}
 </body>
