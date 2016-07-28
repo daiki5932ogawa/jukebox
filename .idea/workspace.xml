@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0066009a-3c0c-4932-bdac-5bb90d31dc78" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/Video/play.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/Video/play.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/JukeboxBundle/Controller/VideoController.php" afterPath="$PROJECT_DIR$/src/JukeboxBundle/Controller/VideoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/JukeboxBundle/Entity/Video.php" afterPath="$PROJECT_DIR$/src/JukeboxBundle/Entity/Video.php" />
-    </list>
+    <list default="true" id="0066009a-3c0c-4932-bdac-5bb90d31dc78" name="Default" comment="" />
     <ignored path="jukebox.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -248,12 +243,12 @@
       <option name="presentableId" value="Default" />
       <updated>1468806215882</updated>
       <workItem from="1468806218945" duration="38306000" />
-      <workItem from="1469080840974" duration="37536000" />
+      <workItem from="1469080840974" duration="37903000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75842000" />
+    <option name="totallyTimeSpent" value="76209000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="959" extended-state="0" />
