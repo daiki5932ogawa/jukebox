@@ -147,8 +147,9 @@ class Video
         return $this->urlFromForm;
     }
 
-    public function createUrlForDetail(){
-        $urlForDetail = "video/detail"."";
+    public function createUrlForDetail()
+    {
+        $urlForDetail = "video/detail" . "";
     }
 
 }

@@ -61,13 +61,8 @@ class VideoController extends Controller
                 //最後のVideoのIdを取得してidにset
                 $video->setId(count($allVideo) + 1);
                 //登録時の日時をlast_time_playedに登録
-//                $now = new DateTime();
-//                $date = date('Y-m-d H:i:s');
-//                echo $date;
                 $video->setLastDatePlayed(new \DateTime('now'));
                 //Videoをデータベースに保存
-                //$form->handleRequest($video);
-
                 $em = $this->getDoctrine()->getEntityManager();
                 $em->persist($video);
                 $em->flush();
@@ -127,14 +122,23 @@ class VideoController extends Controller
 
         $video = $this->getDoctrine()
             ->getRepository('JukeboxBundle:Video')
-            ->findAll();
+            ->findOneBy([],array('lastDatePlayed' => 'ASC'));
+
+        $video->setLastDatePlayed(new \DateTime('now'));
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->persist($video);
+        $em->flush();
 
         return $this->render(
             'Video/play.html.twig', array(
-                'video_array' => $video
+                'single_video' => $video
             )
         );
     }
 
+    public function findAllByDatetime()
+    {
+        return $this->getDoctrine()->getRepository('JukeboxBundle:Video')->findBy([], ['last_date_played' => 'ASC']);
+    }
 }
 
