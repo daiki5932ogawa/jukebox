@@ -138,13 +138,59 @@ class VideoController extends Controller
         );
     }
 
-    public function findAllByDatetime()
-    {
-        return $this->getDoctrine()->getRepository('JukeboxBundle:Video')->findBy([], ['last_date_played' => 'ASC']);
+//    public function findAllByDatetime()
+//    {
+//        return $this->getDoctrine()->getRepository('JukeboxBundle:Video')->findBy([], ['last_date_played' => 'ASC']);
+//    }
+
+    public function editAction(Request $request, $video_id){
+        //editする内容を書く
+        $entityManager = $this->getDoctrine()->getManager();
+        $video = $entityManager->getRepository('JukeboxBundle:Video')->find($video_id);
+
+        //フォームの作成
+        $form = $this->createFormBuilder()
+            ->add('url', 'text')
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        //動画を登録する処理
+        if ($request->getMethod() == 'POST') {
+
+            $data = $form->getData();
+
+            if ($form->isValid()) {
+
+                $video->setUrl($data['url']);
+                //Videoをデータベースに保存
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($video);
+                $em->flush();
+
+                //video画面にリダイレクト
+                return $this->redirect($this->generateUrl('video'));
+            }
+        }
+
+        return $this->render('Video/edit.html.twig', array(
+            'form' => $form->createView(), 'video' => $video
+        ));
     }
 
-    public function editAction($video_id){
-        //editする内容を書く
+    public function updateAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $product = $em->getRepository('AcmeStoreBundle:Product')->find($id);
+
+        if (!$product) {
+            throw $this->createNotFoundException('No product found for id '.$id);
+        }
+
+        $product->setName('New product name!');
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('homepage'));
     }
 }
 
