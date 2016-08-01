@@ -8,9 +8,12 @@
     </head>
     <body>
     {#{% if $request->headers->get('') = '' %}#}
-    {#<script type="text/javascript">#}
-        {#alert("Video Removed Successfully!");#}
-    {#</script>#}
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <script type="text/javascript">
+        alert("{{ flashMessage }}");
+        </script>
+    {% endfor %}
         <ul id="navigation">
             登録済みビデオ一覧
         </ul>

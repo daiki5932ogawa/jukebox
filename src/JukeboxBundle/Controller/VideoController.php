@@ -69,6 +69,9 @@ class VideoController extends Controller
                 $em->persist($video);
                 $em->flush();
 
+                $this->get('session')->getFlashBag()->set('notice', '動画が登録されました！');
+//                $this->get('session')->setFlash('notice', '変更が保存されました！');
+
                 //video画面にリダイレクト
                 return $this->redirect($this->generateUrl('video'));
             }
@@ -114,6 +117,9 @@ class VideoController extends Controller
         $video = $entityManager->getRepository('JukeboxBundle:Video')->find($video_id);
         $entityManager->remove($video);
         $entityManager->flush();
+
+        $this->get('session')->getFlashBag()->set('notice', '動画が削除されました!');
+
         return $this->redirect($this->generateUrl('video'));
     }
 
@@ -137,11 +143,6 @@ class VideoController extends Controller
             )
         );
     }
-
-//    public function findAllByDatetime()
-//    {
-//        return $this->getDoctrine()->getRepository('JukeboxBundle:Video')->findBy([], ['last_date_played' => 'ASC']);
-//    }
 
     public function editAction(Request $request, $video_id){
         //editする内容を書く
@@ -168,6 +169,9 @@ class VideoController extends Controller
                 $em->persist($video);
                 $em->flush();
 
+                //アラート表示
+                $this->get('session')->getFlashBag()->set('notice', '動画が編集されました!');
+
                 //video画面にリダイレクト
                 return $this->redirect($this->generateUrl('video'));
             }
@@ -178,19 +182,5 @@ class VideoController extends Controller
         ));
     }
 
-    public function updateAction($id)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-        $product = $em->getRepository('AcmeStoreBundle:Product')->find($id);
-
-        if (!$product) {
-            throw $this->createNotFoundException('No product found for id '.$id);
-        }
-
-        $product->setName('New product name!');
-        $em->flush();
-
-        return $this->redirect($this->generateUrl('homepage'));
-    }
 }
 
