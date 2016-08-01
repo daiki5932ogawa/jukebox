@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+    {#{% if $request->headers->get('') = '' %}#}
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <script type="text/javascript">
+        alert("{{ flashMessage }}");
+        </script>
+    {% endfor %}
+        <ul id="navigation">
+            ユーザー詳細
+        </ul>
+        {#ビデオ一覧の詳細を書く#}
+
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+    {#{% if $request->headers->get('') = '' %}#}
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <script type="text/javascript">
+        alert("{{ flashMessage }}");
+        </script>
+    {% endfor %}
+        <ul id="navigation">
+            登録済みユーザーの一覧
+        </ul>
+        {#ビデオ一覧のループを書く#}
+        {% for single_user in user_array %}
+            <li><a href="{{ path('manage_users', {'user_id': single_user.getId}) }}"> {{ single_user.getId }}</a></li>
+        {% endfor %}
+        <a href="{{ path('manage_users') }}">
+            新しくユーザーを登録
+        </a>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

@@ -28,3 +28,11 @@ video/edit:
 play:
     path:       /play
     defaults:   { _controller: JukeboxBundle:Video:play }
+
+manage_users:
+    path:       /manage_users
+    defaults:   { _controller: JukeboxBundle:User:index }
+
+manage_users/detail:
+    path:       /manage_users/{user_id}/detail
+    defaults:   { _controller: JukeboxBundle:User:detail }
